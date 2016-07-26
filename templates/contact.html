@@ -1,0 +1,123 @@
+{% extends "index.html" %}
+ 
+{% block content %}
+<section id="contact1" class="background2 section-padding">
+    {% if scroll %}
+    <script>
+        document.getElementById('{{ scroll }}').scrollIntoView();
+            // or
+        document.location.hash = '#' + '{{ scroll }}';
+    </script>
+    {% endif %}
+    <div class="container">
+      <div class="row mb30">
+        <div class="col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3 section-title text-center">
+              <h2>Contact</h2>
+              <span class="section-divider mb15"></span>
+              <p class="no-margin scaleReveal">Our team is from all over the world and we know how to deliver quality pixels from miles away.</p>
+          </div><!-- /.column -->
+      </div>
+        {% if success %}
+        <div id="success_message" class="col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3 section-title text-center">
+            <p>Thank you for your message. We'll get back to you shortly.</p>
+        </div>
+
+      {% else %}
+        <div class="row">
+            <div class="col-sm-5 col-lg-4">
+                <h5 class="heading-1 mb20">Visit Us</h5>
+					<h4 class="mb15">Starokyivska, 10, office 305<br>Kyiv, Ukraine</h4>
+					<hr>
+					<p class="text-xs-small mb5"><strong class="text-switch">Email:</strong> andriy.lazorenko@gmail.com</p>
+					<p class="text-xs-small mb5"><strong class="text-switch">Phone:</strong> +38-050-449-51-61</p>
+				</div><!-- /.column -->
+            <div class="col-sm-6 col-lg-7 mt30-xs">
+                <form action="{{ url_for('contact') }}" method=post>
+                {{ form.hidden_tag() }}
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <div class="controls">
+                                    {{ form.name.label }}<br>
+                                    {{ form.name }}
+                                    <div id="errors" class="help-block with-errors">
+                                        {% for message in form.name.errors %}
+                                          <span>  {{ message }} </span>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div><!-- /.column -->
+
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <div class="controls">
+                                    {{ form.email.label }}<br>
+                                    {{ form.email }}
+                                    <div class="help-block with-errors">
+                                        {% for message in form.email.errors %}
+                                            {{ message }}
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mb10">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <div class="controls">
+                                    {{form.phone.label}}<br>
+                                    {{form.phone}}
+                                    <div class="help-block with-errors">
+                                        {% for message in form.phone.errors %}
+                                            {{ message }}
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div><!-- /.column -->
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <div class="controls">
+                                    {{ form.subject.label }}<br>
+                                    {{ form.subject }}
+                                    <div class="help-block with-errors">
+                                        {% for message in form.subject.errors %}
+                                            {{ message }}
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div><!-- /.column -->
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <div class="controls">
+                                    {{ form.message.label }}<br>
+                                    {{ form.message }}
+                                    <div class="help-block with-errors">
+                                        {% for message in form.message.errors %}
+                                            {{ message }}
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mt15">
+							<div class="col-sm-6">
+								<div id="msgSubmit" class="h4 hidden mt10 no-margin-bottom"></div>
+							</div><!-- /.column -->
+							<div class="col-sm-6 text-right">
+								<button type="submit" id="submit_form" class="btn btn-default btn-lg">Send</button>
+							</div><!-- /.column -->
+					</div><!-- /.row -->
+                </form>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</section>
+{% endblock %}
